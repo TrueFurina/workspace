@@ -1,0 +1,1 @@
+{"probe":{"description":"权限探针。用 Bash 执行 date 并原样回报结果。","prompt":"用 Bash 工具执行 `date +%Y-%m-%d`，原样返回输出。不要编造。","tools":["Bash"]}}

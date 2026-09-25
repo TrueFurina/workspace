@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "③ 代码实验 Agent 输出 Schema",
+  "type": "object",
+  "required": [
+    "executed",
+    "raw_output_ref"
+  ],
+  "properties": {
+    "executed": {
+      "type": "boolean",
+      "description": "是否在 docker_sandbox 真容器执行"
+    },
+    "sandbox": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "network": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        },
+        "cpu": {
+          "type": "number"
+        }
+      }
+    },
+    "raw_output_ref": {
+      "type": "string",
+      "description": "指向原始日志，可查"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "not_obtained": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "没跑出的据实列，不得隐瞒"
+    }
+  }
+}

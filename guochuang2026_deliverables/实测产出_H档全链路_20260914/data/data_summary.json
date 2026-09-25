@@ -1,0 +1,191 @@
+{
+  "generated_at": "2026-09-13",
+  "datasets": {
+    "formation_energy_hea_subset": {
+      "source": {
+        "name": "JARVIS-DFT dft_3d",
+        "url": "https://doi.org/10.1016/j.commatsci.2025.114063",
+        "alternative_doi": "https://doi.org/10.6084/m9.figshare.6815699",
+        "license": "CC BY 4.0",
+        "obtained": true,
+        "load_method": "jarvis.db.figshare.data('dft_3d')",
+        "total_raw_entries": 93902
+      },
+      "row_count": 15783,
+      "col_count": 13,
+      "columns": [
+        "jid",
+        "formula",
+        "elements",
+        "n_elements",
+        "formation_energy_peratom",
+        "bandgap",
+        "bulk_modulus_kv",
+        "shear_modulus_gv",
+        "density",
+        "spg_symbol",
+        "nat",
+        "total_energy",
+        "ehull"
+      ],
+      "filters_applied": "elements count >= 4 (multi-principal element alloys)",
+      "stats": {
+        "formation_energy_peratom": {
+          "n": 15783,
+          "min": -4.3126,
+          "max": 3.3714,
+          "mean": -1.7112,
+          "std": 0.9115,
+          "median": -1.8743,
+          "q25": -2.3796,
+          "q75": -0.8932
+        },
+        "bandgap": {
+          "n": 15783,
+          "min": 0.0,
+          "max": 8.164,
+          "mean": 1.2564,
+          "std": 1.6913,
+          "median": 0.329,
+          "q25": 0.0,
+          "q75": 2.172
+        },
+        "bulk_modulus_kv": {
+          "n": 3166,
+          "min": 0.0,
+          "max": 382.37,
+          "mean": 90.2538,
+          "std": 63.1765,
+          "median": 74.985,
+          "q25": 41.14,
+          "q75": 128.17
+        },
+        "shear_modulus_gv": {
+          "n": 3166,
+          "min": -24.27,
+          "max": 193.77,
+          "mean": 43.1409,
+          "std": 32.0996,
+          "median": 36.175,
+          "q25": 19.4225,
+          "q75": 62.125
+        },
+        "density": {
+          "n": 15783,
+          "min": 0.878,
+          "max": 18.514,
+          "mean": 4.9604,
+          "std": 2.0882,
+          "median": 4.571,
+          "q25": 3.4715,
+          "q75": 6.078
+        },
+        "n_elements": {
+          "n": 15783,
+          "min": 4.0,
+          "max": 7.0,
+          "mean": 4.1451,
+          "std": 0.3837,
+          "median": 4.0,
+          "q25": 4.0,
+          "q75": 4.0
+        }
+      },
+      "element_count_distribution": {
+        "4": 13664,
+        "5": 1960,
+        "6": 147,
+        "7": 12
+      },
+      "missing_values": {
+        "jid": 0,
+        "formula": 0,
+        "elements": 0,
+        "n_elements": 0,
+        "formation_energy_peratom": 0,
+        "bandgap": 0,
+        "bulk_modulus_kv": 12617,
+        "shear_modulus_gv": 12617,
+        "density": 0,
+        "spg_symbol": 0,
+        "nat": 0,
+        "total_energy": 0,
+        "ehull": 0
+      },
+      "missing_ratios": {
+        "jid": 0.0,
+        "formula": 0.0,
+        "elements": 0.0,
+        "n_elements": 0.0,
+        "formation_energy_peratom": 0.0,
+        "bandgap": 0.0,
+        "bulk_modulus_kv": 79.94,
+        "shear_modulus_gv": 79.94,
+        "density": 0.0,
+        "spg_symbol": 0.0,
+        "nat": 0.0,
+        "total_energy": 0.0,
+        "ehull": 0.0
+      },
+      "outliers": {
+        "formation_energy": {
+          "method": "IQR",
+          "threshold": "1.5*IQR",
+          "count": 2,
+          "lower_bound": -4.6091,
+          "upper_bound": 1.3363
+        },
+        "bandgap": {
+          "method": "IQR",
+          "threshold": "1.5*IQR",
+          "count": 405,
+          "lower_bound": -3.258,
+          "upper_bound": 5.43
+        }
+      }
+    },
+    "hardness_nanoindentation": {
+      "source": {
+        "name": "MPEA Nanoindentation Database",
+        "url": "https://figshare.com/articles/dataset/A_database_of_multi-principal_element_alloy_phase-specific_mechanical_properties_measured_with_nano-indentation/25244884",
+        "download_url": "https://figshare.com/ndownloader/files/46900682",
+        "license": "CC BY 4.0",
+        "obtained": false,
+        "reason": "HTTP 404 - File not found. The file ID 46900682 does not exist on figshare. Figshare WAF blocks all other access methods."
+      },
+      "row_count": 0,
+      "note": "Dataset could not be downloaded from figshare - see not_obtained for details"
+    },
+    "hardness_expanded": {
+      "source": {
+        "name": "Expanded MPEA Mechanical Properties",
+        "url": "https://figshare.com/articles/dataset/Expanded_dataset_of_mechanical_properties_and_observed_phases_of_multi-principal_element_alloys/12642953",
+        "download_url": "https://figshare.com/ndownloader/files/23869570",
+        "license": "CC BY 4.0",
+        "obtained": false,
+        "reason": "HTTP 404 - File not found. The file ID 23869570 does not exist on figshare."
+      },
+      "row_count": 0,
+      "note": "Dataset could not be downloaded from figshare - see not_obtained for details"
+    },
+    "hardness_refractory": {
+      "source": {
+        "name": "Refractory HEA Dataset",
+        "url": "https://figshare.com/articles/dataset/GE_RefractoryAlloyScreeningDataset_FINAL_csv/17032760",
+        "download_url": "https://figshare.com/ndownloader/files/30400182",
+        "license": "CC BY 4.0",
+        "obtained": false,
+        "reason": "HTTP 403 - Insufficient permissions. The file exists but is not publicly accessible."
+      },
+      "row_count": 0,
+      "note": "Dataset could not be downloaded from figshare - see not_obtained for details"
+    }
+  },
+  "generated_files": [
+    "/root/code/research/data/formation_energy_hea_subset.csv",
+    "/root/code/research/figures/jarvis_hea_statistics.png",
+    "/root/code/research/figures/jarvis_hea_fe_vs_bg.png",
+    "/root/code/research/data/data_summary.json",
+    "/root/code/research/data/data_quality_report.md"
+  ]
+}

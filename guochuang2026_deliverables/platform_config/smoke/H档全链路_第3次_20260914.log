@@ -1,0 +1,140 @@
+────────────────────────────────────────────
+ 平台：多智能体协同高校科研助理平台（A-1）
+ 编排：WorkBuddy 原生 --agents（无自研调度内核）
+ 主Agent：orchestrator ｜ 模型：deepseek-v3-2-volc ｜ max-turns：90
+ 任务：基于公开高熵合金数据集建立硬度/形成能预测模型，5 折交叉验证 + 可靠性评估 + 方法学严格审查。硬要求：①数据必须来自真实公开数据集，写明名称+官方URL+许可证，严禁合成数据，拿不到就熔断并写 not_obtained；②所有数值必须真跑。环境提示（仅本次运行有效）：GitHub 与 Zenodo 在本机不可达，但 figshare.com、data.mendeley.com、jarvis.nist.gov 可达，pip 已配清华镜像可直接安装依赖。优先尝试这些可达源。
+────────────────────────────────────────────
+---
+
+# 📊 完整链路汇总报告
+
+## 链路执行情况
+
+| 步骤 | Agent | 状态 | 耗时 |
+|------|-------|------|------|
+| ① 文献调研 | literature | ✅ 完成 | — |
+| ② 数据处理 | data | ⚠️ **部分熔断** | — |
+| ③ 实验建模 | experiment | ✅ 完成 | — |
+| ④ 论文写作 | writing | ✅ 完成 | — |
+| ⑤ 成果评估 | evaluation | ✅ 完成（退回修订） | — |
+| ⑥ 鲶鱼对抗复核 | catfish | ✅ **H档强制完成** | — |
+
+---
+
+## 一、数据获取状态
+
+### ✅ 已获取（形成能）
+| 项目 | 内容 |
+|------|------|
+| **数据集** | JARVIS-DFT dft_3d |
+| **DOI** | [10.6084/m9.figshare.6815699](https://doi.org/10.6084/m9.figshare.6815699) |
+| **许可证** | CC BY 4.0 |
+| **获取方法** | `pip install jarvis-tools` → `jarvis.db.figshare.data('dft_3d')` |
+| **HEA 子集** | 15,783 条（≥4元素过滤） |
+
+### ❌ 未获取（硬度）→ **触发链路熔断**
+| 数据集 | 原因 |
+|--------|------|
+| MPEA 纳米压痕数据库 (figshare 25244884) | HTTP 404 |
+| 扩充 MPEA 数据集 (figshare 12642953) | HTTP 404 |
+| 耐火 HEA 数据集 (figshare 17032760) | HTTP 403 |
+| **原因** | figshare AWS WAF 阻挡该环境的请求 |
+
+---
+
+## 二、模型性能（全数据集 5 折 CV）
+
+| 模型 | R² (均值±标准差) | MAE (eV/atom) | RMSE (eV/atom) |
+|------|-------|-------|-------|
+| **XGBoost 🏆** | **0.9260 ± 0.0073** | **0.1555 ± 0.0037** | **0.2477 ± 0.0123** |
+| RandomForest | 0.9207 ± 0.0067 | 0.1561 ± 0.0041 | 0.2564 ± 0.0110 |
+| SVR | 0.9193 ± 0.0070 | 0.1668 ± 0.0035 | 0.2587 ± 0.0113 |
+| LinearRegression | 0.7646 ± 0.0070 | 0.3377 ± 0.0038 | 0.4422 ± 0.0078 |
+
+---
+
+## 三、鲶鱼对抗复核 — 核心发现（最关键部分）
+
+Catfish Agent 通过构造 5 个对立假设并执行独立验证，发现了 **4 个致命问题**：
+
+### 🔴 C1：96.3% 的"HEA"条目含非金属元素（评估 Agent 完全遗漏）
+- 仅 **3.7%（586条）** 是全金属体系
+- 67.2% 含氧（氧化物为主）、10.7% 含氟、6.4% 含氯
+- 这不是 HEA 研究，本质是"**多组分无机化合物形成能预测**"
+
+### 🔴 C2：电负性标准差 61.4% 的重要性是共线性伪像
+- **Ablation 实验**：移除 EN_std 后，XGBoost R² 从 0.9260 → 0.9257（**Δ = -0.0003**）
+- 其他共线特征（ΔH_mix r=0.977, EN_diff r=0.980）自动补偿
+- 在全金属子集上，EN_std 重要性从 61.4% 骤降至 **5.8%**
+
+### 🔴 C3：模型无法跨材料类型泛化
+- **Leave-One-Group-Out CV**：
+  - 氧化物（n=10,601）: **R² = -0.079**（比瞎猜还差！）
+  - 全金属（n=586）: **R² = 0.208**
+  - 其他非金属（n=4,596）: **R² = 0.317**
+- 模型"学到"的是材料类型区分，而非普适形成能物理
+
+### 🔴 C4：真正 HEA 子集上性能大幅下降
+- 全金属子集 XGBoost: **R² = 0.7301 ± 0.0467**（远低于 0.9260）
+- 特征重要性完全改变：EN_std 61.4% → **5.8%**，Omega 参数升至第 1（27.9%）
+
+---
+
+## 四、评估 Agent 自审评分修正
+
+| 维度 | 评估 Agent 评分 | 鲶鱼修正 |
+|------|:---:|:---:|
+| 证据充分性 | 1.5/2 | **0.5/2** |
+| 方法恰当性 | 1.0/2 | **1.0/2**（维持） |
+| 结果可复现 | 2.0/2 | **2.0/2**（维持） |
+| 结论克制性 | 1.5/2 | **0.5/2** |
+| 表述规范性 | 1.5/2 | **1.5/2**（维持） |
+| **总分** | **7.5/10** | **→ 4.5/10** |
+
+---
+
+## 五、本次链路自评与已知缺陷
+
+### 各步骤可信度评级
+| 步骤 | 级别 | 说明 |
+|------|:----:|------|
+| ① 文献调研 | **L0**（真实验证） | 所有 URL、DOI 均真实可溯源 |
+| ② 数据处理 | **L1**（真实但过滤不严） | JARVIS-DFT 数据真实，但"HEA"过滤条件过于宽松 |
+| ③ 实验建模 | **L1**（真实但不完整） | 代码可复现、RF CV 完全可复现，但缺少 LOGO-CV 和 ablation |
+| ④ 论文写作 | **L0**（忠实转述） | 基于实验数据撰写，没有编造 |
+| ⑤ 成果评估 | **L0**（独立复算验证） | 数值复算准确，但遗漏了 6 项严重问题 |
+| ⑥ 鲶鱼复核 | **L0**（真实对抗实验） | 所有对立假设均通过代码独立验证 |
+
+### 耗时最长的步骤
+实验建模（③ experiment）— 特征工程 + 4 模型 × 5 折 CV + 学习曲线 + 残差分析
+
+### 证据最弱的结论
+1. **"电负性标准差是最重要特征"** — ablation 证明完全是共线性伪像
+2. **"XGBoost R²=0.9260 代表 HEA 形成能预测能力"** — 全金属子集仅 0.7301
+3. **"15,783 条 HEA 条目"** — 96.3% 不是真正的高熵合金
+
+---
+
+## 六、所有产物清单
+
+| 目录 | 内容 |
+|------|------|
+| `/root/code/research/literature_review.md` | 文献综述 |
+| `/root/code/research/data/formation_energy_hea_subset.csv` | 处理后的形成能数据（15,783 条） |
+| `/root/code/research/data/data_quality_report.md` | 数据质量报告 |
+| `/root/code/research/experiments/run_experiment.py` | 实验代码 |
+| `/root/code/research/experiments/experiment_report.md` | 实验报告 |
+| `/root/code/research/experiments/model_metrics.json` | 模型指标（4 模型 × 5 折） |
+| `/root/code/research/writing/formation_energy_prediction_report.md` | 中文科研报告 |
+| `/root/code/research/writing/formation_energy_prediction_report_en.md` | 英文科研报告 |
+| `/root/code/research/evaluation/evaluation_report.md` | 评估报告（退回修订） |
+| `/root/code/research/evaluation/verification_script.py` | 独立复算代码 |
+| `/root/code/research/evaluation/correlation_matrix.png` | 特征相关性矩阵 |
+| `/root/code/research/catfish/catfish_report.md` | 🐟 鲶鱼对抗复核报告 |
+| `/root/code/research/catfish/catfish_verification.py` | 对抗验证代码 |
+| `/root/code/research/catfish/ablation_results.json` | Ablation 实验结果 |
+| `/root/code/research/figures/` | 7 张图表（模型对比、学习曲线、特征重要性、残差分析等） |
+
+---
+
+> **⚠️ 链路结论**：本研究因硬度数据 not_obtained 触发**部分熔断**，硬度建模无法进行。形成能建模虽然完成了全链路分析，但 Catfish 对抗复核发现"HEA 数据集"定义存在根本性错误（96.3% 非 HEA），电负性标准差重要性为共线性伪像，模型无法跨材料类型泛化。**建议退回重构**：重新定义研究范围为"多组分无机化合物形成能预测"，或补充真正 HEA 数据（OQMD 过滤）后重新建模。

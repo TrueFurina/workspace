@@ -1,0 +1,76 @@
+{
+  "hypothesis_1_overfitting": {
+    "mean_train_r2": 0.9730495812226261,
+    "mean_test_r2": 0.9259607804510347,
+    "train_test_gap": 0.04708880077159139,
+    "concern_level": "moderate",
+    "per_fold_train": [
+      0.971895960934134,
+      0.9736494968319263,
+      0.9726666082771367,
+      0.9737604083614234,
+      0.9732754317085096
+    ],
+    "per_fold_test": [
+      0.9303680386658766,
+      0.9157287908405741,
+      0.935753255728284,
+      0.9195143642526944,
+      0.9284394527677442
+    ]
+  },
+  "hypothesis_2_ablation": {
+    "full_model_r2": 0.926,
+    "without_en_std_r2": 0.9256754568972003,
+    "only_en_std_r2": 0.6823830815552638,
+    "without_en_diff_r2": 0.924994877093746,
+    "without_all_en_r2": 0.9218080012841903,
+    "without_mp_mean_r2": 0.9259674213554676
+  },
+  "hypothesis_3_generalization": {
+    "logo_cv_results": {
+      "contains_O": {
+        "r2": -0.0788833269857172,
+        "mae": 0.5946734680730064,
+        "n": 10601
+      },
+      "other_non_metal": {
+        "r2": 0.31685532236507274,
+        "mae": 0.5367816543654957,
+        "n": 4596
+      },
+      "all_metal": {
+        "r2": 0.20785696128760345,
+        "mae": 0.16355237836525224,
+        "n": 586
+      }
+    }
+  },
+  "hypothesis_4_hea_definition": {
+    "total_entries": 15783,
+    "all_metal_entries": 586,
+    "has_non_metal_entries": 15197,
+    "pct_all_metal": 3.712855604131027,
+    "pct_has_non_metal": 96.28714439586898,
+    "has_oxygen": 10601,
+    "has_fluorine": 1684,
+    "has_nitrogen": 974,
+    "has_chlorine": 1012,
+    "has_hydrogen": 1837,
+    "has_sulfur": 1987,
+    "unique_space_groups": 175,
+    "solid_solution_like": 1303
+  },
+  "hypothesis_5_data_quality": {
+    "positive_fe_count": 214,
+    "pct_positive_fe": 1.3558892479249827,
+    "min_fe": -4.31262,
+    "max_fe": 3.37141
+  },
+  "all_metal_subset": {
+    "n_entries": 586,
+    "xgboost_cv_r2_mean": 0.7300594532485358,
+    "xgboost_cv_r2_std": 0.046671396225534546,
+    "en_std_importance": 0.057569233319691875
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "⑤ 成果评估 Agent 输出 Schema",
+  "type": "object",
+  "required": [
+    "score",
+    "metrics_verified"
+  ],
+  "properties": {
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "通过",
+        "退回修订",
+        "不通过"
+      ]
+    },
+    "metrics_verified": {
+      "type": "array",
+      "description": "独立复算上游指标，不采信自报",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "claimed": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "recomputed": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "match": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "claimed",
+          "recomputed",
+          "match"
+        ]
+      }
+    },
+    "methodology_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多智能体协同高校科研助理平台 · 门户</title>
+<style>
+  :root{
+    --bg:#0b1020; --card:#141b30; --line:#243049; --txt:#e7ecf5;
+    --sub:#9fb0cc; --acc:#4f8cff; --ok:#39d98a; --warn:#ffb454; --bad:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;padding:32px 16px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{text-align:center;margin-bottom:28px}
+  h1{font-size:26px;letter-spacing:.5px}
+  .tag{display:inline-block;margin-top:10px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;color:var(--sub);font-size:13px}
+  h2{font-size:18px;margin:28px 0 14px;border-left:4px solid var(--acc);padding-left:10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card .n{color:var(--acc);font-size:13px;font-weight:700}
+  .card .t{font-size:15px;font-weight:600;margin:4px 0 6px}
+  .card .d{color:var(--sub);font-size:13px}
+  .ev{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+  .ev .card .big{font-size:22px;color:var(--ok);font-weight:700}
+  .ev .card .big.warn{color:var(--warn)}
+  .ev .card .lbl{color:var(--sub);font-size:13px}
+  pre{background:#0e1424;border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;color:#cfe0ff;font-size:13px}
+  .note{background:#1a1208;border:1px solid #4a3410;color:#ffd9a0;border-radius:10px;padding:14px;font-size:13px;margin-top:14px}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  footer{margin-top:30px;text-align:center;color:var(--sub);font-size:12px}
+  code{background:#0e1424;padding:2px 6px;border-radius:5px;color:#cfe0ff;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>多智能体协同高校科研助理平台</h1>
+    <span class="tag">基于 WorkBuddy / LearnBuddy 原生专家团 + 连接器 + Skill · 产业命题赛道 2026</span>
+  </header>
+
+  <h2>① 八大科研 Agent（编排中枢 + 七类专家）</h2>
+  <div class="grid">
+    <div class="card"><div class="n">中枢</div><div class="t">Orchestrator 编排</div><div class="d">Triage 判档（L/M/H）→ 自主用 Agent 工具分派 → 回收 → 链路熔断</div></div>
+    <div class="card"><div class="n">①</div><div class="t">文献调研</div><div class="d">多库检索 + 引文回溯 + 可溯源 DOI；独立复算</div></div>
+    <div class="card"><div class="n">②</div><div class="t">数据处理</div><div class="d">缺失/异常明示处理；禁合成数据；真实源标注</div></div>
+    <div class="card"><div class="n">③</div><div class="t">代码实验</div><div class="d">真跑数值；上游合成则拒作结论</div></div>
+    <div class="card"><div class="n">④</div><div class="t">论文写作</div><div class="d">期刊/毕设模板；引用格式化；标人工复核处</div></div>
+    <div class="card"><div class="n">⑤</div><div class="t">成果评估</div><div class="d">评分 + 方法学审查 + 独立复算数值</div></div>
+    <div class="card"><div class="n">⑥</div><div class="t">鲶鱼对抗复核</div><div class="d">H 档强制触发；构造对立假设 + 自审上一轮</div></div>
+    <div class="card"><div class="n">⑦</div><div class="t">课题评估</div><div class="d">立项阶段离线运行；四维评估推荐/审慎/不推荐</div></div>
+  </div>
+
+  <h2>② 真机实测证据（非纸面）</h2>
+  <div class="ev">
+    <div class="card"><div class="big">5/5</div><div class="lbl">L 档文献 DOI 经 Crossref 独立复算真实存在</div></div>
+    <div class="card"><div class="big">34</div><div class="lbl">H 档全链路真实产物文件（①→⑥ 接力）</div></div>
+    <div class="card"><div class="big">0.926</div><div class="lbl">XGBoost 5 折 R²（per_fold 重算差 0.00）真跑</div></div>
+    <div class="card"><div class="big warn">7.5→4.5</div><div class="lbl">评估 7.5 通过，鲶鱼挖 4 致命问题改判 4.5 退回</div></div>
+  </div>
+
+  <h2>③ 一键启动（真机）</h2>
+  <pre>git clone &lt;项目仓&gt; &amp;&amp; cd platform_config
+./run_platform.sh --check          # 校验 8 角色配置
+./run_platform.sh -l "检索高熵合金形成能文献 5 篇"   # L 档
+./run_platform.sh -h "端到端科研任务…"             # H 档（含鲶鱼）</pre>
+  <p style="color:var(--sub);font-size:13px;margin-top:8px">配置：<code>agents_official.json</code>（8 角色，扁平 map + <code>description</code>/<code>prompt</code>，符合官方 <code>--agents</code> 规范）；文件版已部署 <code>.codebuddy/agents/*.md</code>。</p>
+
+  <h2>④ 合规声明（命题硬约束）</h2>
+  <div class="grid">
+    <div class="card"><div class="t ok">R5 红线 ✅</div><div class="d">编排在 WorkBuddy 原生层（<code>--agents</code>/<code>--agent orchestrator</code>），Triage 写在编排 prompt 内，不自研 Agent OS</div></div>
+    <div class="card"><div class="t ok">真实 > 漂亮 ✅</div><div class="d">主动废弃 97.7%（开卷）与 92.4%（同源伪指标）；保留 3.8/10、4.5/10 退回</div></div>
+    <div class="card"><div class="t ok">防编造 ✅</div><div class="d">missing_handling / not_obtained / synthetic_data / metrics_verified 等反编造字段写进 prompt</div></div>
+  </div>
+
+  <div class="note">
+    ⚠️ <b>本链接为平台「展示页」</b>：用于对外演示与评委查看平台能力与实测证据。
+    指标②（多 Agent 协同自动完成率 ≥80%）的真人测试需经 WorkBuddy 产品内「发布为应用」将对话/平台开放给非项目成员，或走 Plan B（受试者到真机独立操作），详见《6.3_6.4 真机验证 SOP》。
+  </div>
+
+  <footer>中国国际大学生创新大赛（2026）产业命题赛道 · 腾讯命题「多智能体协同高校科研助理平台」 · 当前进度 W3 冲刺交付</footer>
+</div>
+</body>
+</html>

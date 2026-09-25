@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "④ 论文写作 Agent 输出 Schema",
+  "type": "object",
+  "required": [
+    "sections",
+    "citations",
+    "rewrite_tool_used"
+  ],
+  "properties": {
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "heading",
+          "content"
+        ]
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "claim",
+          "source_id"
+        ]
+      }
+    },
+    "insufficient_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rewrite_tool_used": {
+      "type": "boolean",
+      "const": false,
+      "description": "恒为 false：不得用改写工具规避查重（防编造机制）"
+    }
+  }
+}

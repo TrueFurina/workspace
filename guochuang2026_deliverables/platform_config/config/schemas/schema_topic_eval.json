@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "⑦ 课题选择评估器 输出 Schema",
+  "type": "object",
+  "required": [
+    "dimension_scores",
+    "recommendation"
+  ],
+  "properties": {
+    "dimension_scores": {
+      "type": "object",
+      "properties": {
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "文献覆盖度"
+        },
+        "data_avail": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "数据可得性（须核验真实数据源公开免费）"
+        },
+        "novelty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "创新性"
+        },
+        "feasibility": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "可行性"
+        }
+      },
+      "required": [
+        "coverage",
+        "data_avail",
+        "novelty",
+        "feasibility"
+      ]
+    },
+    "rationale": {
+      "type": "object"
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": [
+        "推荐",
+        "审慎",
+        "不推荐"
+      ]
+    }
+  }
+}

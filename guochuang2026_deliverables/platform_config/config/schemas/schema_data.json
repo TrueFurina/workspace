@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "② 数据处理 Agent 输出 Schema",
+  "type": "object",
+  "required": [
+    "missing_handling",
+    "profile"
+  ],
+  "properties": {
+    "missing_handling": {
+      "type": "array",
+      "description": "缺失/异常处理方式必须明示，禁静默填充",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "field",
+          "issue",
+          "method"
+        ]
+      }
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "row_count": {
+          "type": "integer"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outlier_rule": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "row_count"
+      ]
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "output_ref": {
+      "type": "string"
+    }
+  }
+}

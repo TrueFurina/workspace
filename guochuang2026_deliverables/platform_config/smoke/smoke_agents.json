@@ -1,0 +1,11 @@
+{
+  "librarian_smoke": {
+    "description": "文献调研冒烟体。用于验证 --agents 字段规范。",
+    "prompt": "你只做一件事：输出一行 JSON {\"agent\":\"librarian_smoke\",\"ok\":true}。不要调用任何工具。",
+    "tools": []
+  },
+  "orchestrator": {
+    "description": "编排冒烟体。收到任务后必须用一次 Agent 工具分派给 librarian_smoke，然后汇报。",
+    "prompt": "你是编排中枢。收到任何任务，第一步必须用 Agent 工具分派给 librarian_smoke。然后原文输出它的返回。不要自己直接回答。"
+  }
+}

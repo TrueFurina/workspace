@@ -1,0 +1,461 @@
+{
+  "data_integrity": {
+    "file_exists": true,
+    "n_rows": 15783,
+    "n_cols": 13,
+    "expected_rows": 15783,
+    "row_count_match": true,
+    "duplicate_count": 0,
+    "missing_columns": [],
+    "n_elements_min": 4,
+    "n_elements_max": 7,
+    "all_ge_4": true,
+    "element_distribution": {
+      "4": 13664,
+      "5": 1960,
+      "6": 147,
+      "7": 12
+    }
+  },
+  "descriptive_stats": {
+    "computed": {
+      "count": 15783,
+      "min": -4.31262,
+      "max": 3.37141,
+      "mean": -1.7111612450104543,
+      "std": 0.9114769147660867,
+      "median": -1.87432,
+      "q1": -2.37958,
+      "q3": -0.893235
+    },
+    "reported": {
+      "count": 15783,
+      "min": -4.3126,
+      "max": 3.3714,
+      "mean": -1.7112,
+      "std": 0.9115,
+      "median": -1.8202,
+      "q1": -2.3125,
+      "q3": -1.0623
+    },
+    "comparison": {
+      "count": {
+        "reported": 15783,
+        "computed": 15783,
+        "diff": 0,
+        "match": true
+      },
+      "min": {
+        "reported": -4.3126,
+        "computed": -4.31262,
+        "diff": 2.0000000000131024e-05,
+        "match": true
+      },
+      "max": {
+        "reported": 3.3714,
+        "computed": 3.37141,
+        "diff": 1.0000000000065512e-05,
+        "match": true
+      },
+      "mean": {
+        "reported": -1.7112,
+        "computed": -1.7111612450104543,
+        "diff": 3.875498954575285e-05,
+        "match": true
+      },
+      "std": {
+        "reported": 0.9115,
+        "computed": 0.9114769147660867,
+        "diff": 2.3085233913255898e-05,
+        "match": true
+      },
+      "median": {
+        "reported": -1.8202,
+        "computed": -1.87432,
+        "diff": 0.054119999999999946,
+        "match": false
+      },
+      "q1": {
+        "reported": -2.3125,
+        "computed": -2.37958,
+        "diff": 0.0670799999999998,
+        "match": false
+      },
+      "q3": {
+        "reported": -1.0623,
+        "computed": -0.893235,
+        "diff": 0.16906500000000002,
+        "match": false
+      }
+    }
+  },
+  "cv_verification": {
+    "model": "RandomForest",
+    "cv_folds": 5,
+    "reported_r2_mean": 0.9207,
+    "reported_r2_std": 0.0067,
+    "recomputed_r2_mean": 0.920724642184666,
+    "recomputed_r2_std": 0.006663170542054304,
+    "r2_difference": 2.464218466602386e-05,
+    "within_tolerance": true,
+    "per_fold_r2": [
+      0.9253857431034112,
+      0.9113094824307487,
+      0.929604868357619,
+      0.9151796719536153,
+      0.9221434450779362
+    ],
+    "reported_mae": 0.1561,
+    "recomputed_mae_mean": 0.15609098163476015,
+    "recomputed_mae_std": 0.004062576924688885,
+    "mae_difference": 9.0183652398379e-06
+  },
+  "multicollinearity": {
+    "high_corr_pairs": [
+      [
+        "Z_mean",
+        "Atomic_Mass_mean",
+        0.9988346752473356
+      ],
+      [
+        "Z_diff",
+        "Z_std",
+        0.9868187261177556
+      ],
+      [
+        "Z_diff",
+        "Atomic_Mass_diff",
+        0.9975342789451764
+      ],
+      [
+        "Z_diff",
+        "Atomic_Mass_std",
+        0.9873080876007619
+      ],
+      [
+        "Z_std",
+        "Atomic_Mass_diff",
+        0.9834946223975878
+      ],
+      [
+        "Z_std",
+        "Atomic_Mass_std",
+        0.9975512900282316
+      ],
+      [
+        "Atomic_Radius_diff",
+        "Atomic_Radius_std",
+        0.9821579436631478
+      ],
+      [
+        "Electronegativity_mean",
+        "Ionization_Energy_mean",
+        0.906793635088667
+      ],
+      [
+        "Electronegativity_diff",
+        "Electronegativity_std",
+        0.9803028426755301
+      ],
+      [
+        "Electronegativity_diff",
+        "Ionization_Energy_diff",
+        0.9002694729729451
+      ],
+      [
+        "Electronegativity_diff",
+        "Delta_Hmix",
+        0.9392848839001186
+      ],
+      [
+        "Electronegativity_std",
+        "Ionization_Energy_diff",
+        0.9065548950013051
+      ],
+      [
+        "Electronegativity_std",
+        "Ionization_Energy_std",
+        0.9084366601013598
+      ],
+      [
+        "Electronegativity_std",
+        "Delta_Hmix",
+        0.9765242311302829
+      ],
+      [
+        "Valence_Electrons_mean",
+        "VEC",
+        1.0
+      ],
+      [
+        "Valence_Electrons_diff",
+        "Valence_Electrons_std",
+        0.9630140672634083
+      ],
+      [
+        "Atomic_Mass_diff",
+        "Atomic_Mass_std",
+        0.988668001873975
+      ],
+      [
+        "Melting_Point_diff",
+        "Melting_Point_std",
+        0.988066866959938
+      ],
+      [
+        "Ionization_Energy_diff",
+        "Ionization_Energy_std",
+        0.9836447094845959
+      ],
+      [
+        "Ionization_Energy_diff",
+        "Delta_Hmix",
+        0.9134589790888237
+      ],
+      [
+        "Ionization_Energy_std",
+        "Delta_Hmix",
+        0.9241744145142538
+      ],
+      [
+        "Delta_Smix",
+        "n_elements",
+        0.998670456100584
+      ]
+    ],
+    "vif": [
+      {
+        "feature": "Valence_Electrons_mean",
+        "VIF": Infinity
+      },
+      {
+        "feature": "VEC",
+        "VIF": Infinity
+      },
+      {
+        "feature": "const",
+        "VIF": 18046.832314126532
+      },
+      {
+        "feature": "Atomic_Mass_diff",
+        "VIF": 4528.516429249341
+      },
+      {
+        "feature": "Atomic_Mass_std",
+        "VIF": 4167.619568249055
+      },
+      {
+        "feature": "Z_diff",
+        "VIF": 3876.9052518372623
+      },
+      {
+        "feature": "Z_std",
+        "VIF": 3597.857361611153
+      },
+      {
+        "feature": "Z_mean",
+        "VIF": 1196.3965050157783
+      },
+      {
+        "feature": "Atomic_Mass_mean",
+        "VIF": 1162.798372579346
+      },
+      {
+        "feature": "Delta_Smix",
+        "VIF": 383.9734127977971
+      },
+      {
+        "feature": "n_elements",
+        "VIF": 382.2030196648317
+      },
+      {
+        "feature": "Electronegativity_std",
+        "VIF": 147.40669077360184
+      },
+      {
+        "feature": "Atomic_Radius_std",
+        "VIF": 123.97636435243729
+      },
+      {
+        "feature": "Electronegativity_diff",
+        "VIF": 74.44023903098184
+      },
+      {
+        "feature": "delta",
+        "VIF": 70.37606332602866
+      },
+      {
+        "feature": "Ionization_Energy_std",
+        "VIF": 67.29249926995287
+      },
+      {
+        "feature": "Melting_Point_diff",
+        "VIF": 61.590421908690566
+      },
+      {
+        "feature": "Melting_Point_std",
+        "VIF": 60.84007634629626
+      },
+      {
+        "feature": "Ionization_Energy_diff",
+        "VIF": 60.6802388327816
+      },
+      {
+        "feature": "Delta_Hmix",
+        "VIF": 51.782765361838464
+      },
+      {
+        "feature": "Atomic_Radius_diff",
+        "VIF": 49.81139857609575
+      },
+      {
+        "feature": "Atomic_Radius_mean",
+        "VIF": 36.456165576997485
+      },
+      {
+        "feature": "Valence_Electrons_std",
+        "VIF": 17.237841489838118
+      },
+      {
+        "feature": "Valence_Electrons_diff",
+        "VIF": 17.08279017290816
+      },
+      {
+        "feature": "Ionization_Energy_mean",
+        "VIF": 16.698560420015742
+      },
+      {
+        "feature": "Electronegativity_mean",
+        "VIF": 15.98917117431341
+      },
+      {
+        "feature": "Melting_Point_mean",
+        "VIF": 4.622397927260635
+      },
+      {
+        "feature": "Omega",
+        "VIF": 2.1835105696698385
+      }
+    ],
+    "features_vif_gt_10": [
+      {
+        "feature": "Valence_Electrons_mean",
+        "VIF": Infinity
+      },
+      {
+        "feature": "VEC",
+        "VIF": Infinity
+      },
+      {
+        "feature": "const",
+        "VIF": 18046.832314126532
+      },
+      {
+        "feature": "Atomic_Mass_diff",
+        "VIF": 4528.516429249341
+      },
+      {
+        "feature": "Atomic_Mass_std",
+        "VIF": 4167.619568249055
+      },
+      {
+        "feature": "Z_diff",
+        "VIF": 3876.9052518372623
+      },
+      {
+        "feature": "Z_std",
+        "VIF": 3597.857361611153
+      },
+      {
+        "feature": "Z_mean",
+        "VIF": 1196.3965050157783
+      },
+      {
+        "feature": "Atomic_Mass_mean",
+        "VIF": 1162.798372579346
+      },
+      {
+        "feature": "Delta_Smix",
+        "VIF": 383.9734127977971
+      },
+      {
+        "feature": "n_elements",
+        "VIF": 382.2030196648317
+      },
+      {
+        "feature": "Electronegativity_std",
+        "VIF": 147.40669077360184
+      },
+      {
+        "feature": "Atomic_Radius_std",
+        "VIF": 123.97636435243729
+      },
+      {
+        "feature": "Electronegativity_diff",
+        "VIF": 74.44023903098184
+      },
+      {
+        "feature": "delta",
+        "VIF": 70.37606332602866
+      },
+      {
+        "feature": "Ionization_Energy_std",
+        "VIF": 67.29249926995287
+      },
+      {
+        "feature": "Melting_Point_diff",
+        "VIF": 61.590421908690566
+      },
+      {
+        "feature": "Melting_Point_std",
+        "VIF": 60.84007634629626
+      },
+      {
+        "feature": "Ionization_Energy_diff",
+        "VIF": 60.6802388327816
+      },
+      {
+        "feature": "Delta_Hmix",
+        "VIF": 51.782765361838464
+      },
+      {
+        "feature": "Atomic_Radius_diff",
+        "VIF": 49.81139857609575
+      },
+      {
+        "feature": "Atomic_Radius_mean",
+        "VIF": 36.456165576997485
+      },
+      {
+        "feature": "Valence_Electrons_std",
+        "VIF": 17.237841489838118
+      },
+      {
+        "feature": "Valence_Electrons_diff",
+        "VIF": 17.08279017290816
+      },
+      {
+        "feature": "Ionization_Energy_mean",
+        "VIF": 16.698560420015742
+      },
+      {
+        "feature": "Electronegativity_mean",
+        "VIF": 15.98917117431341
+      }
+    ]
+  },
+  "compliance": {
+    "physically_reasonable_range": true,
+    "all_valid_jids": true,
+    "unique_ratio": 0.9669264398403346,
+    "decimal_places_distribution": {
+      "1": 1,
+      "2": 13,
+      "3": 144,
+      "4": 1379,
+      "5": 14246
+    },
+    "feature_importance_exists": true,
+    "predictions_exist": true
+  }
+}
